@@ -1,5 +1,7 @@
 # Retail or Auction? A Decision Model for Used Car Trade-Ins
 
+**[Try the live app](https://trade-in-decision.streamlit.app)**: move the market and cost sliders and watch 2,000 trade-in decisions update.
+
 When a dealer takes in a used car, it has to choose: recondition it and sell it on the lot, or send it straight to auction. This project builds a model that makes that call car by car under uncertainty, measures which assumptions drive the decision, and estimates what an inspection is worth before deciding.
 
 ## The headline
@@ -79,15 +81,18 @@ python -m src.load_data               # clean both files into parquet
 #   notebooks/01_explore.py           what the data looks like
 #   notebooks/02_models.py            price and time-to-sale models
 #   notebooks/03_decision_engine.py   simulation, sensitivity, value of information
+python -m src.export_app_inputs      # save the small input file the app reads
 streamlit run app/streamlit_app.py    # interactive what-if app
 ```
+
+The app reads only `app/app_inputs.npz` (about 150 KB of per-car price ranges and time-to-sale parameters), so the deployed version runs without the raw data or trained models.
 
 ## Repo structure
 
 ```
 src/        config (every assumption in one place), loading, features, models, simulation
 notebooks/  01 explore, 02 models, 03 decision engine
-app/        Streamlit what-if app
+app/        Streamlit what-if app and its precomputed inputs
 docs/       problem framing and week-by-week findings
 reports/    figures and sensitivity table
 ```
@@ -97,4 +102,4 @@ reports/    figures and sensitivity table
 - Manheim Used Vehicle Value Index, September 2020 (161.2): [Cox Automotive](https://www.coxautoinc.com/insights-hub/wholesale-prices-cool-in-september-after-three-months-of-record-highs/)
 - About $3,400 average spread between auction purchase and retail asking price, from 178k cars tracked by VIN: [Auto Remarketing](https://www.autoremarketing.com/?p=17763)
 
-**Tools:** Python, pandas, scikit-learn (histogram gradient boosting, quantile loss), SciPy (custom maximum likelihood), NumPy Monte Carlo, Streamlit.
+**Tools:** Python, pandas, scikit-learn (histogram gradient boosting, quantile loss), SciPy (custom maximum likelihood), NumPy Monte Carlo, Streamlit (deployed on Streamlit Community Cloud).

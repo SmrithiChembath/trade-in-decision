@@ -1,8 +1,8 @@
 pandas>=2.0
 pyarrow
 numpy
+scipy
 matplotlib
-seaborn
-lifelines
 scikit-learn
+joblib
 streamlit
