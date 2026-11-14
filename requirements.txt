@@ -1,0 +1,8 @@
+pandas>=2.0
+pyarrow
+numpy
+matplotlib
+seaborn
+lifelines
+scikit-learn
+streamlit

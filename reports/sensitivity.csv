@@ -1,0 +1,7 @@
+assumption,retail_share_low,retail_share_high,swing
+Transport to retail ($150 to $500),0.263,0.2275,0.035500000000000004
+Auction fees ($250 to $600),0.2315,0.2695,0.038000000000000006
+Recon cost (70% to 130%),0.295,0.2085,0.0865
+Retail sale discount (0% to 6%),0.3205,0.1875,0.133
+Holding cost per day ($20 to $50),0.3255,0.1885,0.137
+Auction price level (-5% to +5%),0.356,0.1655,0.19049999999999997
