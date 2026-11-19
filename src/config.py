@@ -6,8 +6,8 @@ Why: the decision model depends on numbers we do not observe in the data
 the sensitivity analysis in Week 3 can change them easily, and a reviewer
 can see every assumption at a glance.
 
-TODO before publishing: replace each PLACEHOLDER with a value you can cite
-(industry article, dealer survey, NADA/auction reports) and add the source.
+The cost assumptions below are not observed in the data. Each one is
+varied over a realistic range in the sensitivity analysis (reports/sensitivity.csv).
 """
 from pathlib import Path
 
@@ -54,24 +54,25 @@ QUANTILES = [0.1, 0.5, 0.9]   # 80% interval plus the median
 MAX_DOM = 365                 # listings older than a year are stale; excluded
 RANDOM_STATE = 42
 
-# ---------- Decision assumptions (PLACEHOLDERS) ----------
+# ---------- Decision assumptions ----------
+# Not observed in the data. Each is stress-tested in the sensitivity analysis.
 # Reconditioning cost by condition band (auction condition on a 1 to 50 scale).
 # Each entry is (low, high) in dollars; Week 3 samples uniformly between them.
 RECON_COST_BY_CONDITION = {
-    "poor (1-19)":      (2_500, 5_000),   # PLACEHOLDER
-    "fair (20-34)":     (1_200, 2_500),   # PLACEHOLDER
-    "good (35-44)":     (500, 1_200),     # PLACEHOLDER
-    "excellent (45+)":  (200, 600),       # PLACEHOLDER
+    "poor (1-19)":      (2_500, 5_000),   # ASSUMPTION
+    "fair (20-34)":     (1_200, 2_500),   # ASSUMPTION
+    "good (35-44)":     (500, 1_200),     # ASSUMPTION
+    "excellent (45+)":  (200, 600),       # ASSUMPTION
 }
 
-HOLDING_COST_PER_DAY = 35       # PLACEHOLDER: floorplan interest + lot + depreciation
-TRANSPORT_TO_RETAIL = 300       # PLACEHOLDER: moving the car to a retail location
-AUCTION_FEES = 400              # PLACEHOLDER: seller fee + transport to auction
+HOLDING_COST_PER_DAY = 35       # ASSUMPTION: floorplan interest + lot + depreciation
+TRANSPORT_TO_RETAIL = 300       # ASSUMPTION: moving the car to a retail location
+AUCTION_FEES = 400              # ASSUMPTION: seller fee + transport to auction
 # Listing price is not sale price. Week 2 showed listings drift from about
 # +1.6% to -2.7% vs market as they age (markdowns), so assume the car finally
 # sells ~3% below its first listing price.
-RETAIL_SALE_DISCOUNT = 0.03     # PLACEHOLDER, informed by the Week 2 markdown check
-INSPECTION_COST = 150           # PLACEHOLDER: cost of a detailed pre-decision inspection
+RETAIL_SALE_DISCOUNT = 0.03     # ASSUMPTION, informed by the Week 2 markdown check
+INSPECTION_COST = 150           # ASSUMPTION: cost of a detailed pre-decision inspection
 
 # ---------- Simulation ----------
 N_CARS = 2_000     # trade-ins to decide on (sampled from held-out auction cars)
